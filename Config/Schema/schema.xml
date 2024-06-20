@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<!--
+  While this schema mostly works with database prefixes, foreign key constraints
+  must be specified in raw SQL, which needs the prefixed table name.
+-->
+<schema version="0.3">
+  <table name="group_provision_enrollers">
+    <field name="id" type="I">
+      <key />
+      <autoincrement />
+    </field>
+    <field name="co_enrollment_flow_wedge_id" type="I">
+      <constraint>REFERENCES cm_co_enrollment_flow_wedges(id)</constraint>
+    </field>
+    <field name="created" type="T" />
+    <field name="modified" type="T" />
+    <field name="group_provision_enroller_id" type="I">
+      <constraint>REFERENCES cm_group_provision_enrollers(id)</constraint>
+    </field>
+    <field name="revision" type="I" />
+    <field name="deleted" type="L" />
+    <field name="actor_identifier" type="C" size="256" />
+    
+    <index name="group_provision_enrollers_i1">
+      <col>co_enrollment_flow_wedge_id</col>
+    </index>
+    <index name="group_provision_enrollers_i2">
+      <col>group_provision_enroller_id</col>
+    </index>
+  </table>
+</schema>
